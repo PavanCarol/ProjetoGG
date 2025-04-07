@@ -1,6 +1,6 @@
 <div class="sidenav-header">
     <img [width]="prifilePicSize()" [height]="prifilePicSize()" src="img/perfil.png">
-    <div class="header-text">
+    <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
         <h2>
             Your  name
         </h2>
@@ -8,11 +8,16 @@
     </div>
 </div>
 <mat-nav-list>
-    <a mat-list-item *ngFor="let item of menuItems()">
+    <a mat-list-item *ngFor="let item of menuItems()" 
+    [routerLink]="item.route"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [activated]="rla.isActive"
+    style="    padding-left: 4px;"
+    >
         <mat-icon matListItemIcon>
             {{item.icon}}
         </mat-icon>
-        <span matListItemTitle>{{item.label}}</span>
-        
+        <span matListItemTitle *ngIf="!sideNavCollapsed()">{{item.label}}</span>
     </a>
 </mat-nav-list>

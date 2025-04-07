@@ -2,6 +2,7 @@ import { Component, computed, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 export type MenuItem={
   icon:string;
   label: string;
@@ -10,7 +11,7 @@ export type MenuItem={
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports:[CommonModule,MatListModule,MatIconModule],
+  imports:[CommonModule,MatListModule,MatIconModule, RouterModule ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
 })
@@ -30,27 +31,27 @@ export class MenuComponent {
     {
       icon:'inventory',
       label:'Estoque',
-      route:'',
+      route:'inventory',
     },
     {
       icon:'support_agent',
       label:'Fornecedores',
-      route:'',
+      route:'provider',
     },
     {
       icon:'paid',
       label:'Financeiro',
-      route:'',
+      route:'financial',
     },
     {
       icon:'menu_book',
       label:'Cardápio',
-      route:'',
+      route:'card',
     },
     {
       icon:'group',
       label:'Clientes',
-      route:'',
+      route:'client',
     }
   ]);
 
