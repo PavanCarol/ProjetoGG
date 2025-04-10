@@ -1,11 +1,41 @@
 .content{
     padding: 24px;
 }
-
+.mat-elevation-z3{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mat-elevation-z1{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
 mat-toolbar{
     position: relative;
     z-index: 5;
 }
 mat-sidenav-container{
     height: calc(100vh - 64px);
+    transition: margin-left 0.3s ease;
+
+  &.collapsed-content {
+    margin-left: 65px;
+  }
+
+  &.expanded-content {
+    margin-left: 250px;
+  }
 }
+mat-sidenav {
+    transition: width 0.3s ease;
+    overflow: hidden;
+  
+    &.collapsed {
+      width: 65px;
+    }
+  
+    &.expanded {
+      width: 250px;
+    }
+  }

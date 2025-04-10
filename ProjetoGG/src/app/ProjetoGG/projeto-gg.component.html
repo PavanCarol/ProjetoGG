@@ -2,12 +2,18 @@
  <button mat-icon-button (click)="collapsed.set(!collapsed())">
     <mat-icon>menu</mat-icon>
  </button>
+ <div class="mat-elevation-z1">
+    <div>Nome</div>
+    <button mat-icon-button>
+        <mat-icon>logout</mat-icon>
+    </button>
+ </div>
 </mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <mat-sidenav opened mode="side" [ngClass]="{ 'collapsed': collapsed(), 'expanded': !collapsed() }" [style.width]="sidenavWidth()">
         <app-menu [collapsed]="collapsed()"></app-menu>
     </mat-sidenav>
-    <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <mat-sidenav-content class="content" [ngClass]="{ 'collapsed-content': collapsed(), 'expanded-content': !collapsed() }" [style.margin-left]="sidenavWidth()">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
