@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Poppins", sans-serif; }
+
+  .mat-drawer-inner-container{
+         background-color: #09184d;
+
+    }
+
+    .mat-mdc-nav-list .mat-mdc-list-item.mdc-list-item--activated {
+    background-color: #7b5bf2 !important;
+}

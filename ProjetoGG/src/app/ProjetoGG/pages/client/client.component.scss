@@ -1,0 +1,53 @@
+.btnNewRegister{
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #7B5BF2;
+    color: white;
+    font-size: 15px;
+}
+
+.card {
+    background: var(--card-background);
+    border: var(--card-border);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.actions-cell {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    gap: 5px;
+}
+th{
+  color: #2F2E2E;
+}
+td{
+  color: #808085;
+}
+.action-btn {
+  background-color: #7B5BF2;
+  border: none;
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    color: #fff; // ícone branco
+    font-size: 20px;
+  }
+
+  &:hover {
+    background-color: darken(#7B5BF2, 10%);
+  }
+}

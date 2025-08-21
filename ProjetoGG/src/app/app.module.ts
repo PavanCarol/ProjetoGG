@@ -39,10 +39,7 @@ import { MenuComponent } from "./ProjetoGG/menu/menu.component";
     MatDialogModule,
     MatListModule,
     MatMenuModule,
-    MenuComponent,
-    MatListModule,
-    MatIconModule,
-    MatListModule
+    MatDialogModule
 ],
   exports: [RouterModule],
   providers: [],
