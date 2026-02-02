@@ -1,0 +1,95 @@
+<!-- 
+  Template de Formulário de Prato
+  
+  Reutilizado para criar e editar pratos.
+  O título e texto do botão mudam conforme o modo.
+-->
+
+<div class="container">
+  <!-- Cabeçalho da página -->
+  <div class="header">
+    <h2>{{ titulo }}</h2>
+    <p class="subtitle">
+      {{ pratoId ? 'Atualize as informações do prato' : 'Preencha os dados para criar um novo prato' }}
+    </p>
+  </div>
+
+  <!-- Card do formulário -->
+  <mat-card class="form-card">
+    
+    <!-- Spinner de carregamento (modo edição) -->
+    <div *ngIf="carregando" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Carregando dados do prato...</p>
+    </div>
+
+    <!-- Formulário -->
+    <form 
+      *ngIf="!carregando" 
+      [formGroup]="formulario" 
+      (ngSubmit)="onSubmit()" 
+      class="prato-form">
+
+      <!-- Campo Nome -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome do Prato</mat-label>
+        <input 
+          matInput 
+          formControlName="nome" 
+          placeholder="Ex: Feijoada, Caipirinha..."
+          maxlength="100">
+        <mat-icon matSuffix>restaurant</mat-icon>
+        <mat-hint>Digite o nome do prato ou bebida</mat-hint>
+        <mat-error *ngIf="formulario.get('nome')?.touched">
+          {{ getErro('nome') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Campo Preço -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Preço (R$)</mat-label>
+        <input 
+          matInput 
+          type="number" 
+          formControlName="preco" 
+          placeholder="0.00"
+          step="0.01"
+          min="0.01">
+        <mat-icon matSuffix>attach_money</mat-icon>
+        <mat-hint>Informe o preço de venda</mat-hint>
+        <mat-error *ngIf="formulario.get('preco')?.touched">
+          {{ getErro('preco') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Botões de ação -->
+      <div class="form-actions">
+        <!-- Botão Cancelar -->
+        <button 
+          mat-stroked-button 
+          type="button" 
+          (click)="cancelar()"
+          [disabled]="salvando">
+          <mat-icon>arrow_back</mat-icon>
+          Cancelar
+        </button>
+
+        <!-- Botão Salvar -->
+        <button 
+          mat-raised-button 
+          color="primary" 
+          type="submit"
+          [disabled]="salvando || formulario.invalid">
+          <mat-spinner 
+            *ngIf="salvando" 
+            diameter="20" 
+            class="button-spinner">
+          </mat-spinner>
+          <mat-icon *ngIf="!salvando">save</mat-icon>
+          {{ salvando ? 'Salvando...' : textoBotao }}
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

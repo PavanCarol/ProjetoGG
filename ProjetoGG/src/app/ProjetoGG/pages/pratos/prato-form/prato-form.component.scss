@@ -1,0 +1,91 @@
+/**
+ * Estilos do componente de formulário de prato
+ */
+
+.container {
+  padding: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// Cabeçalho da página
+.header {
+  margin-bottom: 24px;
+  
+  h2 {
+    margin: 0;
+    color: #333;
+    font-size: 28px;
+    font-weight: 500;
+  }
+  
+  .subtitle {
+    margin: 8px 0 0;
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+// Card do formulário
+.form-card {
+  padding: 24px;
+}
+
+// Formulário
+.prato-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// Campos de largura total
+.full-width {
+  width: 100%;
+}
+
+// Botões de ação
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+  
+  button {
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Spinner dentro do botão
+.button-spinner {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+// Container de carregamento
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  
+  p {
+    margin-top: 16px;
+    color: #666;
+  }
+}
+
+// Estilos globais para snackbar
+:host ::ng-deep {
+  .snackbar-sucesso {
+    background-color: #4caf50 !important;
+    color: white !important;
+  }
+  
+  .snackbar-erro {
+    background-color: #f44336 !important;
+    color: white !important;
+  }
+}

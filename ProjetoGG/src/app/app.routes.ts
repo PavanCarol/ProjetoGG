@@ -1,3 +1,10 @@
+/**
+ * Configuração de Rotas da Aplicação
+ *
+ * Define todas as rotas disponíveis no sistema.
+ * As rotas são organizadas de forma hierárquica dentro do layout principal.
+ */
+
 import { Routes } from '@angular/router';
 import { ProjetoGGComponent } from './ProjetoGG/projeto-gg.component';
 import { LoginComponent } from './components/login/login.component';
@@ -9,20 +16,62 @@ import { ProviderComponent } from './ProjetoGG/pages/provider/provider.component
 import { FinancialComponent } from './ProjetoGG/pages/financial/financial.component';
 import { CardComponent } from './ProjetoGG/pages/card/card.component';
 
+// Importações dos componentes de Pratos (CRUD)
+import { PratoListComponent } from './ProjetoGG/pages/pratos/prato-list/prato-list.component';
+import { PratoFormComponent } from './ProjetoGG/pages/pratos/prato-form/prato-form.component';
+
 export const routes: Routes = [
-//     {
-//     path: '',
-//     component: LoginComponent,
-//   },
-//   {
-//     path: 'login',
-//     component: LoginComponent,
-//   },
+  // Rota comentada do Login (será implementado depois)
+  // {
+  //   path: '',
+  //   component: LoginComponent,
+  // },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  // },
 
   {
     path: '',
     component: ProjetoGGComponent,
     children: [
+      // ============================================
+      // ROTAS DE PRATOS - CRUD COMPLETO
+      // ============================================
+
+      /**
+       * Lista de Pratos
+       * Exibe todos os pratos cadastrados em formato de tabela
+       * Permite: visualizar, editar e excluir pratos
+       */
+      {
+        path: 'pratos',
+        component: PratoListComponent,
+      },
+
+      /**
+       * Novo Prato
+       * Formulário para criar um novo prato
+       */
+      {
+        path: 'pratos/novo',
+        component: PratoFormComponent,
+      },
+
+      /**
+       * Editar Prato
+       * Formulário para editar um prato existente
+       * O parâmetro :id identifica qual prato será editado
+       */
+      {
+        path: 'pratos/editar/:id',
+        component: PratoFormComponent,
+      },
+
+      // ============================================
+      // OUTRAS ROTAS DO SISTEMA
+      // ============================================
+
       {
         path: 'order',
         component: OrderComponent,
@@ -51,5 +100,6 @@ export const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
       },
-    ]}
+    ]
+  }
 ];
