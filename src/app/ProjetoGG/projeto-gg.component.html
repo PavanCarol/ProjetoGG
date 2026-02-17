@@ -12,7 +12,6 @@
 <mat-sidenav-container>
     <mat-sidenav opened mode="side" [ngClass]="{ 'collapsed': collapsed(), 'expanded': !collapsed() }" [style.width]="sidenavWidth()">
         <app-menu [collapsed]="collapsed()"></app-menu>
-        <div>oiii</div>
     </mat-sidenav>
     <mat-sidenav-content class="content" [ngClass]="{ 'collapsed-content': collapsed(), 'expanded-content': !collapsed() }" [style.margin-left]="sidenavWidth()">
         <router-outlet></router-outlet>
