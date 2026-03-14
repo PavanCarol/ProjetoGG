@@ -5,5 +5,5 @@
 export const environment = {
   production: false,
   // URL da API .NET - ajuste conforme necessário
-  apiUrl: 'http://localhost:5000/api'
+  apiUrl: 'https://localhost:44370/api'
 };

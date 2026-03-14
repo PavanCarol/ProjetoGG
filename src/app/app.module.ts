@@ -33,9 +33,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Componentes da Aplicação
-import { ProjetoGGComponent } from './ProjetoGG/projeto-gg.component';
+import { ProjetoGGComponent } from './components/ProjetoGG/projeto-gg.component';
 import { AppComponent } from './app.component';
-import { MenuComponent } from "./ProjetoGG/menu/menu.component";
+import { MenuComponent } from "./pages/menu/menu.component";
 
 @NgModule({
   declarations: [AppComponent, ProjetoGGComponent],
@@ -66,6 +66,7 @@ import { MenuComponent } from "./ProjetoGG/menu/menu.component";
 
     // Componentes
     MenuComponent,
+    
   ],
   exports: [RouterModule],
   providers: [],

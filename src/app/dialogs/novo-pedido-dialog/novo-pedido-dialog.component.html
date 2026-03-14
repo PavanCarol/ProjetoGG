@@ -1,8 +1,8 @@
 <!-- cabeçalho -->
 <div class="dialog-header">
   <div class="dialog-title">
-    <mat-icon>edit_note</mat-icon>
-    <h2>Editar Pedido #{{ pedido.id }}</h2>
+    <mat-icon>add_shopping_cart</mat-icon>
+    <h2>Novo Pedido</h2>
   </div>
   <button mat-icon-button (click)="fechar()">
     <mat-icon>close</mat-icon>
@@ -11,68 +11,42 @@
 
 <div mat-dialog-content class="dialog-content">
 
-  <!-- itens do pedido -->
   <div class="section-label">Itens do Pedido</div>
 
+  <!-- lista de itens adicionados -->
   <div class="itens-lista">
-
     <div class="item-vazio" *ngIf="itens.length === 0">
       <mat-icon>inbox</mat-icon>
       <span>Nenhum item adicionado.</span>
     </div>
 
-    <div class="item-row" *ngFor="let item of itens">
-
+    <div class="item-row" *ngFor="let item of itens; let i = index">
       <div class="item-nome">
         <mat-icon class="item-icon">restaurant</mat-icon>
         <div>
-          <div class="nome-text">{{ item.nomePrato ?? ('Prato #' + item.idPrato) }}</div>
+          <div class="nome-text">{{ item.nomePrato }}</div>
           <div class="preco-unit">R$ {{ item.precoUnitario | number:'1.2-2' }} un.</div>
         </div>
       </div>
-
-      <!-- visualização normal -->
-      <div class="item-direita" *ngIf="!item.editando">
+      <div class="item-direita">
         <span class="item-qtd">x{{ item.quantidade }}</span>
-        <span class="item-subtotal">R$ {{ item.subTotal | number:'1.2-2' }}</span>
-        <button mat-icon-button color="primary" matTooltip="Editar quantidade"
-          [disabled]="salvando" (click)="iniciarEdicao(item)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" matTooltip="Remover item"
-          [disabled]="salvando" (click)="removerItem(item)">
+        <span class="item-subtotal">R$ {{ item.quantidade * item.precoUnitario | number:'1.2-2' }}</span>
+        <button mat-icon-button color="warn" matTooltip="Remover" (click)="removerItem(i)">
           <mat-icon>delete_outline</mat-icon>
         </button>
       </div>
-
-      <!-- edição de quantidade -->
-      <div class="item-edicao" *ngIf="item.editando">
-        <mat-form-field appearance="outline" class="qtd-input">
-          <mat-label>Qtd</mat-label>
-          <input matInput type="number" min="1" [(ngModel)]="item.novaQuantidade">
-        </mat-form-field>
-        <button mat-icon-button color="primary" matTooltip="Confirmar"
-          [disabled]="salvando" (click)="salvarQuantidade(item)">
-          <mat-icon>check</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Cancelar"
-          [disabled]="salvando" (click)="cancelarEdicao(item)">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-
     </div>
   </div>
 
-  <!-- total geral -->
+  <!-- total -->
   <div class="subtotal-row" *ngIf="itens.length > 0">
     <span>Total</span>
-    <span class="subtotal-valor">R$ {{ getSubtotalGeral() | number:'1.2-2' }}</span>
+    <span class="subtotal-valor">R$ {{ getTotal() | number:'1.2-2' }}</span>
   </div>
 
   <mat-divider class="divider"></mat-divider>
 
-  <!-- adicionar item -->
+  <!-- form de adicionar item -->
   <div class="section-label">Adicionar Item</div>
 
   <div class="add-form">
@@ -90,7 +64,7 @@
       <input matInput type="number" min="1" [(ngModel)]="quantidadeNova">
     </mat-form-field>
 
-    <button mat-raised-button color="accent" [disabled]="salvando" (click)="adicionarItem()">
+    <button mat-raised-button color="accent" (click)="adicionarItem()">
       <mat-icon>add</mat-icon>
       Adicionar
     </button>
@@ -99,11 +73,17 @@
   <!-- loading -->
   <div class="loading-row" *ngIf="salvando">
     <mat-spinner diameter="20"></mat-spinner>
-    <span>Salvando...</span>
+    <span>Criando pedido...</span>
   </div>
 
 </div>
 
 <div mat-dialog-actions align="end">
-  <button mat-stroked-button (click)="fechar()">Fechar</button>
+  <button mat-stroked-button (click)="fechar()">Cancelar</button>
+  <button mat-raised-button color="primary"
+    [disabled]="itens.length === 0 || salvando"
+    (click)="confirmar()">
+    <mat-icon>check</mat-icon>
+    Criar Pedido
+  </button>
 </div>

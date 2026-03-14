@@ -1,0 +1,113 @@
+<div class="page-container">
+
+  <!-- cabeçalho -->
+  <div class="page-header">
+    <div class="header-title">
+      <mat-icon>receipt_long</mat-icon>
+      <h1>Pedidos</h1>
+    </div>
+
+    <div class="header-actions">
+      <button mat-raised-button color="primary" (click)="abrirNovoPedido()">
+        <mat-icon>add</mat-icon>
+        Novo Pedido
+      </button>
+
+      <mat-form-field appearance="outline" class="filtro-field">
+        <mat-label>Filtrar por status</mat-label>
+        <mat-icon matPrefix>filter_list</mat-icon>
+        <input matInput [formControl]="filtroControl" [matAutocomplete]="auto" placeholder="Todos">
+        <mat-autocomplete #auto="matAutocomplete">
+          @for (opt of statusOptions; track opt) {
+            <mat-option [value]="opt">{{ opt }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- loading -->
+  <div class="loading-wrapper" *ngIf="carregando">
+    <mat-spinner diameter="48"></mat-spinner>
+    <p>Carregando pedidos...</p>
+  </div>
+
+  <!-- grid de cards -->
+  <div class="cards-grid" *ngIf="!carregando">
+
+    @for (pedido of pedidosFiltrados; track pedido.id) {
+      <mat-card class="pedido-card">
+
+        <!-- topo: id + botão editar -->
+        <div class="card-top">
+          <div class="card-id">
+            <mat-icon>tag</mat-icon>
+            <span>Pedido #{{ pedido.id }}</span>
+          </div>
+          <button mat-icon-button class="btn-editar"
+            matTooltip="Editar itens"
+            (click)="abrirEdicao($event, pedido)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- infos -->
+        <div class="card-body">
+          <div class="info-row">
+            <mat-icon class="row-icon">calendar_today</mat-icon>
+            <span class="row-label">Data</span>
+            <span class="row-value">{{ pedido.data | date:'dd/MM/yyyy' }}</span>
+          </div>
+
+          <div class="info-row">
+            <mat-icon class="row-icon">local_dining</mat-icon>
+            <span class="row-label">Itens</span>
+            <span class="row-value">
+              {{ pedido.itens?.length ?? 0 }}
+              {{ (pedido.itens?.length ?? 0) === 1 ? 'item' : 'itens' }}
+            </span>
+          </div>
+
+          <div class="info-row">
+            <mat-icon class="row-icon">attach_money</mat-icon>
+            <span class="row-label">Total</span>
+            <span class="row-value valor">R$ {{ getTotal(pedido) | number:'1.2-2' }}</span>
+          </div>
+
+          <div class="info-row">
+            <mat-icon class="row-icon">info</mat-icon>
+            <span class="row-label">Status</span>
+            <span class="status-badge" [ngClass]="pedido.paga ? 'status-pago' : 'status-pendente'">
+              <mat-icon class="status-icon">{{ pedido.paga ? 'check_circle' : 'hourglass_empty' }}</mat-icon>
+              {{ getStatus(pedido) }}
+            </span>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- botão pagar -->
+        <div class="card-footer">
+          <button mat-raised-button
+            [color]="pedido.paga ? '' : 'primary'"
+            class="btn-pagar"
+            [disabled]="pedido.paga"
+            (click)="pagar($event, pedido)">
+            <mat-icon>{{ pedido.paga ? 'done_all' : 'payments' }}</mat-icon>
+            {{ pedido.paga ? 'Pago' : 'Pagar' }}
+          </button>
+        </div>
+
+      </mat-card>
+    }
+
+    <!-- estado vazio -->
+    <div class="sem-pedidos" *ngIf="pedidosFiltrados.length === 0">
+      <mat-icon>inbox</mat-icon>
+      <p>Nenhum pedido encontrado.</p>
+    </div>
+
+  </div>
+</div>

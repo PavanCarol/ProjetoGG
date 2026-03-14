@@ -1,0 +1,168 @@
+  .dialog-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    mat-icon {
+      color: #1976d2;
+    }
+  }
+
+.dialog-content {
+  padding: 16px 20px !important;
+  min-width: 500px;
+  max-height: 65vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #aaa;
+}
+
+.itens-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-vazio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  color: #ccc;
+  font-size: 14px;
+
+  mat-icon {
+    font-size: 20px;
+  }
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px 14px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.item-nome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+
+  .item-icon {
+    color: #ccc;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .nome-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .preco-unit {
+    font-size: 12px;
+    color: #aaa;
+  }
+}
+
+.item-direita {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  .item-qtd {
+    font-size: 12px;
+    font-weight: 600;
+    color: #777;
+    background: #e0e0e0;
+    border-radius: 20px;
+    padding: 2px 8px;
+  }
+
+  .item-subtotal {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1976d2;
+    min-width: 80px;
+    text-align: right;
+  }
+}
+
+.item-edicao {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  .qtd-input {
+    width: 80px;
+  }
+}
+
+.subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #e3f2fd;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #555;
+
+  .subtotal-valor {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1976d2;
+  }
+}
+
+.divider {
+  margin: 2px 0;
+}
+
+.add-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  .select-prato {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .qtd-input {
+    width: 80px;
+  }
+}
+
+.loading-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #aaa;
+  font-size: 13px;
+}

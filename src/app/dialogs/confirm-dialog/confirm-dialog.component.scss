@@ -1,0 +1,65 @@
+.dialog-wrapper {
+  padding: 8px 4px;
+}
+
+.dialog-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0 8px;
+  text-align: center;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #fff3e0;
+
+  .dialog-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    color: #ff9800;
+  }
+}
+
+.dialog-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #212121;
+}
+
+.dialog-content {
+  padding: 12px 0 4px;
+  text-align: center;
+
+  p {
+    margin: 0;
+    color: #757575;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+.dialog-actions {
+  padding: 16px 0 8px;
+  gap: 10px;
+
+  .btn-cancelar {
+    border-radius: 8px;
+    padding: 0 20px;
+    font-weight: 500;
+  }
+
+  .btn-confirmar {
+    border-radius: 8px;
+    padding: 0 20px;
+    font-weight: 600;
+  }
+}

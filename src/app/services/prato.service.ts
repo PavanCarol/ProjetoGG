@@ -60,6 +60,7 @@ export class PratoService {
    * @returns Observable com o Prato criado (incluindo o ID gerado)
    */
   criar(prato: PratoRequest): Observable<Prato> {
+    console.log('Enviando os dados do prato:', prato);
     return this.http.post<Prato>(this.apiUrl, prato).pipe(
       catchError(this.handleError)
     );

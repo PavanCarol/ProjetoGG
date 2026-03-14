@@ -6,19 +6,19 @@
  */
 
 import { Routes } from '@angular/router';
-import { ProjetoGGComponent } from './ProjetoGG/projeto-gg.component';
+import { ProjetoGGComponent } from './components/ProjetoGG/projeto-gg.component';
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './ProjetoGG/dashboard/dashboard.component';
-import { ClientComponent } from './ProjetoGG/pages/client/client.component';
-import { OrderComponent } from './ProjetoGG/pages/order/order.component';
-import { InventoryComponent } from './ProjetoGG/pages/inventory/inventory.component';
-import { ProviderComponent } from './ProjetoGG/pages/provider/provider.component';
-import { FinancialComponent } from './ProjetoGG/pages/financial/financial.component';
-import { CardComponent } from './ProjetoGG/pages/card/card.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ClientComponent } from './pages/client/client.component';
+import { OrderComponent } from './pages/order/order.component';
+import { InventoryComponent } from './pages/inventory/inventory.component';
+import { ProviderComponent } from './pages/provider/provider.component';
+import { FinancialComponent } from './pages/financial/financial.component';
+import { CardComponent } from './pages/card/card.component';
 
 // Importações dos componentes de Pratos (CRUD)
-import { PratoListComponent } from './ProjetoGG/pages/pratos/prato-list/prato-list.component';
-import { PratoFormComponent } from './ProjetoGG/pages/pratos/prato-form/prato-form.component';
+import { PratoListComponent } from './pages/pratos/prato-list/prato-list.component';
+import { PratoFormComponent } from './pages/pratos/prato-form/prato-form.component';
 
 export const routes: Routes = [
   // Rota comentada do Login (será implementado depois)

@@ -13,16 +13,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Importações locais
-import { PratoService } from '../../../../services/prato.service';
-import { Prato, PratoRequest } from '../../../../models/prato.model';
+import { PratoService } from '../../../services/prato.service';
+import { Prato, PratoRequest } from '../../../models/prato.model';
 
 /**
  * Componente de Formulário de Prato
- * 
+ *
  * Este componente é reutilizado para criar e editar pratos.
  * Detecta automaticamente o modo (criar/editar) baseado na presença
  * de um ID na rota.
- * 
+ *
  * Funcionalidades:
  * - Validação de campos obrigatórios
  * - Validação de preço mínimo
@@ -50,19 +50,19 @@ import { Prato, PratoRequest } from '../../../../models/prato.model';
 export class PratoFormComponent implements OnInit {
   // Formulário reativo
   formulario!: FormGroup;
-  
+
   // ID do prato sendo editado (null = novo prato)
   pratoId: number | null = null;
-  
+
   // Controles de estado
   carregando = false;
   salvando = false;
-  
+
   // Título dinâmico baseado no modo
   get titulo(): string {
     return this.pratoId ? 'Editar Prato' : 'Novo Prato';
   }
-  
+
   // Texto do botão de submit
   get textoBotao(): string {
     return this.pratoId ? 'Atualizar' : 'Criar';
@@ -87,7 +87,7 @@ export class PratoFormComponent implements OnInit {
 
   /**
    * Inicializa o FormGroup com validações
-   * 
+   *
    * Validações:
    * - Nome: obrigatório, mínimo 2 caracteres
    * - Preço: obrigatório, mínimo 0.01
@@ -113,7 +113,7 @@ export class PratoFormComponent implements OnInit {
    */
   private verificarModoEdicao(): void {
     const id = this.route.snapshot.params['id'];
-    
+
     if (id) {
       this.pratoId = +id; // Converte para número
       this.carregarPrato();
@@ -125,9 +125,9 @@ export class PratoFormComponent implements OnInit {
    */
   private carregarPrato(): void {
     if (!this.pratoId) return;
-    
+
     this.carregando = true;
-    
+
     this.pratoService.obterPorId(this.pratoId).subscribe({
       next: (prato) => {
         // Preenche o formulário com os dados do prato
@@ -156,16 +156,15 @@ export class PratoFormComponent implements OnInit {
       this.formulario.markAllAsTouched();
       return;
     }
-    
+
     // Prepara os dados para envio
     const dadosPrato: PratoRequest = {
       nome: this.formulario.value.nome.trim(),
-      preco: this.formulario.value.preco,
-      produtos: [] // Array vazio para CRUD básico
-    };
-    
+      preco: this.formulario.value.preco
+      };
+
     this.salvando = true;
-    
+
     // Decide entre criar ou atualizar
     if (this.pratoId) {
       this.atualizarPrato(dadosPrato);
@@ -195,7 +194,7 @@ export class PratoFormComponent implements OnInit {
    */
   private atualizarPrato(dados: PratoRequest): void {
     if (!this.pratoId) return;
-    
+
     this.pratoService.atualizar(this.pratoId, dados).subscribe({
       next: () => {
         this.mostrarMensagem('Prato atualizado com sucesso!', 'sucesso');
@@ -222,11 +221,11 @@ export class PratoFormComponent implements OnInit {
    */
   getErro(campo: string): string {
     const controle = this.formulario.get(campo);
-    
+
     if (!controle || !controle.errors || !controle.touched) {
       return '';
     }
-    
+
     // Mapeia os erros para mensagens amigáveis
     if (controle.errors['required']) {
       return `${this.getNomeCampo(campo)} é obrigatório`;
@@ -243,7 +242,7 @@ export class PratoFormComponent implements OnInit {
     if (controle.errors['max']) {
       return `${this.getNomeCampo(campo)} deve ser menor que ${controle.errors['max'].max}`;
     }
-    
+
     return 'Campo inválido';
   }
 

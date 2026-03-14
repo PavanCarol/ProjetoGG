@@ -13,13 +13,13 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Importações locais
-import { PratoService } from '../../../../services/prato.service';
-import { Prato } from '../../../../models/prato.model';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { PratoService } from '../../../services/prato.service';
+import { Prato } from '../../../models/prato.model';
+import { ConfirmDialogComponent } from '../../../dialogs/confirm-dialog/confirm-dialog.component';
 
 /**
  * Componente de Listagem de Pratos
- * 
+ *
  * Este componente exibe uma tabela com todos os pratos cadastrados
  * e permite realizar operações de CRUD:
  * - Visualizar lista de pratos
@@ -48,10 +48,10 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class PratoListComponent implements OnInit {
   // Lista de pratos carregados da API
   pratos: Prato[] = [];
-  
+
   // Controle de estado de carregamento
   carregando = false;
-  
+
   // Colunas exibidas na tabela
   colunasExibidas: string[] = ['idPrato', 'nome', 'preco', 'acoes'];
 
@@ -76,7 +76,7 @@ export class PratoListComponent implements OnInit {
    */
   carregarPratos(): void {
     this.carregando = true;
-    
+
     this.pratoService.listar().subscribe({
       // Sucesso: atualiza a lista de pratos
       next: (pratos) => {
@@ -125,7 +125,7 @@ export class PratoListComponent implements OnInit {
     // Processa a resposta do diálogo
     dialogRef.afterClosed().subscribe(confirmou => {
       if (confirmou) {
-        this.excluirPrato(prato.idPrato);
+        this.excluirPrato(prato.id!);
       }
     });
   }
